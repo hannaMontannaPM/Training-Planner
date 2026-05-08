@@ -132,10 +132,16 @@ class TrainingPlanner:
 
     def load_data(self):
         if os.path.exists("training_data.json"):
-            with open("training_data.json", "r", encoding="utf-8") as f:
-                self.data = json.load(f)
-            self.update_table()
-            self.update_filters()
+            try:
+                with open("training_data.json", "r", encoding="utf-8") as f:
+                    self.data = json.load(f)
+                self.update_table()
+                self.update_filters()
+            except Exception as e:
+                messagebox.showerror("Ошибка", f"Ошибка при загрузке JSON:\n{e}")
+                self.data = []
+                self.update_table()
+                self.update_filters()
 
 if __name__ == "__main__":
     root = tk.Tk()

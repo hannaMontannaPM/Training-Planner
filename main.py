@@ -72,6 +72,11 @@ class TrainingPlanner:
             messagebox.showerror("Ошибка", "Некорректный формат даты.")
             return
 
+        # Валидация типа тренировки
+        if not type_str:
+            messagebox.showerror("Ошибка", "Поле 'Тип тренировки' не должно быть пустым.")
+            return
+        
         # Валидация длительности
         if not duration_str.isdigit() or int(duration_str) <= 0:
             messagebox.showerror("Ошибка", "Длительность должна быть положительным числом.")
